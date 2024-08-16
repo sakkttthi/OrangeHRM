@@ -1,72 +1,70 @@
 package stepdefinitions;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.*;
+import pages.Dashboard;
 import pages.Login;
 import utils.DriverFactory;
 import utils.PropertyReader;
 
 public class LoginSteps {
-	WebDriver driver= DriverFactory.getDriver();
-	
+	PropertyReader propRead = new PropertyReader();
+	WebDriver driver = DriverFactory.getDriver();
 	Login login;
-	
+	Dashboard dashboard;
+
 	@Given("User is in login page")
-	public void user_is_in_login_page() {
-	    login=new Login(driver);
-	    String url = new PropertyReader().getprop("url");
-	    driver.get(url);
+	public void user_is_in_login_page() throws IOException {
+		login = new Login(driver);
+		propRead.loadProperties();
+		String url = propRead.getprop("url");
+		driver.get(url);
 	}
 
 	@Then("user is on login screen")
 	public void user_is_on_login_screen() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		login.isOnLoginScreen();
 	}
 
-	@Given("enter Admin")
-	public void enter_admin() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Given("enter username as {string}")
+	public void enter_username_as(String string) {
+		String username = propRead.getprop("username");
+		login.enterUname(username);
 	}
 
-	@Given("enter admin123")
-	public void enter_admin123() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Given("enter password as {string}")
+	public void enter_password_as(String string) {
+		String password = propRead.getprop("password");
+		login.enterPass(password);
 	}
 
 	@Given("click login")
 	public void click_login() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		login.clickLogin();
 	}
 
-	@Then("user is navigated to dasboard screen")
-	public void user_is_navigated_to_dasboard_screen() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("user is navigated to dashboard screen")
+	public void user_is_navigated_to_dashboard_screen() {
+		dashboard = new Dashboard(driver);
+		dashboard.screenIsDashoard();
 	}
 
 	@Given("click my profile")
 	public void click_my_profile() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		dashboard.clickMyProfile();
 	}
 
 	@Given("click logout")
 	public void click_logout() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		dashboard.clickLogout();
 	}
 
-	@Then("user is naviagated to login screen")
-	public void user_is_naviagated_to_login_screen() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("user is navigated to login screen")
+	public void user_is_navigated_to_login_screen() {
+		login.isOnLoginScreen();
 	}
-
-	
 
 }
