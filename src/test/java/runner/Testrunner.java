@@ -11,7 +11,10 @@ import io.cucumber.junit.CucumberOptions;
 		  glue = {"stepdefinitions"},
 		  dryRun = false,
 //		  tags = "@LoginTest",
-		  plugin = {"pretty", "html:target/cucumber-reports"}
+		  plugin = {"pretty", "html:target/cucumber-reports",
+			"rerun: target/failedScenario.txt "	  
+//				  new line
+		  }
 		)
 
 public class Testrunner {
