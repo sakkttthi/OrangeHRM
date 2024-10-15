@@ -13,6 +13,7 @@ import io.cucumber.junit.CucumberOptions;
 //		  tags = "@LoginTest",
 		  plugin = {"pretty", "html:target/cucumber-reports",
 			"rerun: target/failedScenario.txt "	  
+//				  new line
 		  }
 		)
 
