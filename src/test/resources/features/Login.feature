@@ -5,7 +5,7 @@ Feature: Enter and exit application
   Background: 
     Given User is in login page
 
-  @smoke @login
+  @login
   Scenario: Login to application
     Then user is on login screen
     Given enter username as "<username>"
